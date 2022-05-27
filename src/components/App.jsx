@@ -32,7 +32,6 @@ export const App = () => {
   }
 
   useEffect(() => {
-   console.log("Z Ala ",persons)
     localStorage.setItem('contacts', JSON.stringify(persons))
   }, [persons])
 
