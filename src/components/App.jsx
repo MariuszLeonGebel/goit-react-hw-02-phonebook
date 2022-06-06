@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import AddContacts from './AddContacts/AddContacts';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
@@ -11,13 +11,6 @@ export const App = () => {
   const [nr, setNr] = useState("")
   const [filt, setFilt] = useState("")
   
-  useEffect(function () {
-    const items = JSON.parse(localStorage.getItem("contacts"));
-    if (items) {
-      setPersons(items);
-    }
-  }, [])
-
   function addContact() {
     if (persons.find(person => person.name.toLowerCase() === name.toLowerCase())) {
       alert(`${name} is already in contacts`)
@@ -28,12 +21,8 @@ export const App = () => {
     setPersons(prev => [...prev, { id: nanoid(), name, nr }])
     setCopyPersons(prev => [...prev, { id: nanoid(), name, nr }])
     setName("")
-    setNr("")    
+    setNr("")     
   }
-
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(persons))
-  }, [persons])
 
   function handleNameChange(e) {
     setName(e.target.value)
